@@ -10,6 +10,9 @@
 <!-- bootbox library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
+<!-- font awesome icons -->
+<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+
 <script>
 // JavaScript for deleting product
 $(document).on('click', '.delete-object', function() {
@@ -20,11 +23,11 @@ $(document).on('click', '.delete-object', function() {
         message: "<h4>Apagar ficha?</h4>",
         buttons: {
             confirm: {
-                label: '<span class="glyphicon glyphicon-ok"></span> Sim',
+                label: '<span class="fas fa-check"></span> Sim',
                 className: 'btn-danger'
             },
             cancel: {
-                label: '<span class="glyphicon glyphicon-remove"></span> Não',
+                label: '<span class="fas fa-times"></span> Não',
                 className: 'btn-primary'
             }
         },

@@ -12,17 +12,20 @@ $db = $database->getConnection();
  
 $ficha = new Ficha($db);
  
-$page_title = "Visualizar fichas";
+// get search term
+$search_term=isset($_GET['s']) ? $_GET['s'] : '';
+ 
+$page_title = "Você procurou por \"{$search_term}\"";
 include_once "layout_header.php";
  
 // query products
-$stmt = $ficha->readAll($from_record_num, $records_per_page);
+$stmt = $ficha->search($search_term, $from_record_num, $records_per_page);
  
 // specify the page where paging is used
-$page_url = "index.php?";
+$page_url="search.php?s={$search_term}&";
  
 // count total rows - used for pagination
-$total_rows=$ficha->countAll();
+$total_rows=$ficha->countAll_BySearch($search_term);
  
 // read_template.php controls how the product list will be rendered
 include_once "visualiza_template.php";

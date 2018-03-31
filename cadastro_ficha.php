@@ -15,7 +15,9 @@ $page_title = "Cadastrar ficha";
 include_once "layout_header.php";
  
 echo "<div class='right-button-margin'>";
-    echo "<a href='index.php' class='btn btn-default pull-right'>Visualizar fichas</a>";
+    echo "<a href='index.php' class='btn btn-primary pull-right'>";
+        echo "<span class='fas fa-list'></span> Visualizar fichas";
+    echo "</a>";
 echo "</div>";
 ?>
 
@@ -46,18 +48,18 @@ if ($_POST) {
  
         <tr>
             <td>Nome</td>
-            <td><input type='text' name='nome' class='form-control' focus='true' /></td>
+            <td><input type='text' name='nome' class='form-control' focus='true' required /></td>
         </tr>
  
         <tr>
             <td>Data de nascimento</td>
-            <td><input type='text' name='data_nascimento' class='form-control' /></td>
+            <td><input type='text' name='data_nascimento' class='form-control' required /></td>
         </tr>
  
         <tr>
             <td></td>
             <td>
-                <button type="submit" class="btn btn-primary">Cadastrar ficha</button>
+                <button type="submit" class="btn btn-success">Cadastrar ficha</button>
             </td>
         </tr>
  

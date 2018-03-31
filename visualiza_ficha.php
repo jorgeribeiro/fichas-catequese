@@ -26,7 +26,7 @@ include_once "layout_header.php";
 // read products button
 echo "<div class='right-button-margin'>";
     echo "<a href='index.php' class='btn btn-primary pull-right'>";
-        echo "<span class='glyphicon glyphicon-list'></span> Visualizar fichas";
+        echo "<span class='fas fa-list'></span> Visualizar fichas";
     echo "</a>";
 echo "</div>";
 

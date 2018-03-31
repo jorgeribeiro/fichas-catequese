@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2018 at 03:08 AM
+-- Generation Time: Mar 31, 2018 at 04:14 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `catequese_fichas`
 --
-CREATE DATABASE IF NOT EXISTS `catequese_fichas` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+CREATE DATABASE IF NOT EXISTS `catequese_fichas` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `catequese_fichas`;
 
 -- --------------------------------------------------------
@@ -35,8 +35,8 @@ USE `catequese_fichas`;
 --
 
 DROP TABLE IF EXISTS `ficha`;
-CREATE TABLE `ficha` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ficha` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(128) NOT NULL,
   `data_nascimento` date NOT NULL,
   `naturalidade` varchar(32) NOT NULL,
@@ -69,8 +69,9 @@ CREATE TABLE `ficha` (
   `catequista_2` varchar(128) NOT NULL,
   `catequista_3` varchar(128) NOT NULL,
   `catequizando_frequente` tinyint(1) NOT NULL,
-  `preenchimento_ficha` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `preenchimento_ficha` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ficha`
@@ -86,26 +87,6 @@ INSERT INTO `ficha` (`id`, `nome`, `data_nascimento`, `naturalidade`, `endereco`
 (9, 'Matheus', '0000-00-00', '', '', '', 0, 0, 0, '', 0, 0, '0000-00-00', '', '', '', 0, 0, 0, 0, '', 0, 0, 0, '', '', '', '', 0, '', '', '', 0, 0),
 (12, 'AntÃ´nio', '0000-00-00', '', '', '', 0, 0, 0, '', 0, 0, '0000-00-00', '', '', '', 0, 0, 0, 0, '', 0, 0, 0, '', '', '', '', 0, '', '', '', 0, 0),
 (11, 'Dilene', '0000-00-00', '', '', '', 0, 0, 0, '', 0, 0, '0000-00-00', '', '', '', 0, 0, 0, 0, '', 0, 0, 0, '', '', '', '', 0, '', '', '', 0, 0);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `ficha`
---
-ALTER TABLE `ficha`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `ficha`
---
-ALTER TABLE `ficha`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

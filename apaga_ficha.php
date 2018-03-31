@@ -1,4 +1,11 @@
 <?php
+// core.php holds pagination variables
+include_once 'config/core.php';
+
+// include login checker
+$require_login=true;
+include_once "login_checker.php";
+
 // check if value was posted
 if ($_POST) {
  

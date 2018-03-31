@@ -1,4 +1,8 @@
 <?php
+// include login checker
+$require_login=true;
+include_once "login_checker.php";
+
 // include database and object files
 include_once 'config/database.php';
 include_once 'objects/ficha.php';

@@ -1,8 +1,9 @@
 <?php
 // get ID of the product to be read
 $id = isset($_GET['id']) ? $_GET['id'] : die('ERRO: Página inacessível.');
- 
-$require_login=true;
+
+// core.php holds pagination variables
+include_once 'config/core.php';
  
 // include database and object files
 include_once 'config/database.php';

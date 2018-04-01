@@ -8,18 +8,12 @@ $page_title = "Registro";
 // include login checker
 include_once "login_checker.php";
  
-// include classes
-include_once 'config/database.php';
-include_once 'objects/usuario.php';
-include_once "libs/php/utils.php";
- 
-// include page header HTML
-include_once "layout_header.php";
- 
-echo "<div class='col-md-12'>";
- 
 // if form was posted
 if ($_POST) {
+	// include classes
+	include_once 'config/database.php';
+	include_once 'objects/usuario.php';
+	include_once "libs/php/utils.php";
  
     // get database connection
     $database = new Database();
@@ -64,6 +58,11 @@ if ($_POST) {
 		}
     }
 }
+
+// include page header HTML
+include_once "layout_header.php";
+ 
+echo "<div class='col-md-12'>";
 ?>
 	<form action='registro.php' method='post' id='register'>
 	 

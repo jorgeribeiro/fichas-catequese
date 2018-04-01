@@ -2,9 +2,8 @@
 // get ID of the product to be edited
 $id = isset($_GET['id']) ? $_GET['id'] : die('ERRO: Página inacessível.');
 
-// include login checker
-$require_login=true;
-include_once "login_checker.php";
+// core.php holds pagination variables
+include_once 'config/core.php';
  
 // include database and object files
 include_once 'config/database.php';

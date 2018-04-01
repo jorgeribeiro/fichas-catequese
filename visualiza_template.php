@@ -1,8 +1,4 @@
 <?php
-// include login checker
-$require_login=true;
-include_once "login_checker.php";
-
 // search form
 echo "<form role='search' action='search.php'>";
     echo "<div class='input-group col-md-3 pull-left margin-right-1em left-margin'>";

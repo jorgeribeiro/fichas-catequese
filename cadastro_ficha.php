@@ -1,7 +1,6 @@
 <?php
-// include login checker
-$require_login=true;
-include_once "login_checker.php";
+// core.php holds pagination variables
+include_once 'config/core.php';
 
 // include database and object files
 include_once 'config/database.php';

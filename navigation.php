@@ -36,7 +36,7 @@
                         &nbsp;&nbsp;<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="<?php echo $home_url; ?>logout.php">Logout</a></li>
+                        <li><a href="<?php echo $home_url; ?>logout.php">Sair do sistema</a></li>
                     </ul>
                 </li>
             </ul>
@@ -53,7 +53,7 @@
                     </a>
                 </li>
              
-                <li <?php echo $page_title=="Register" ? "class='active'" : ""; ?>>
+                <li <?php echo $page_title=="Registro" ? "class='active'" : ""; ?>>
                     <a href="<?php echo $home_url; ?>registro">
                         <span class="fas fa-check"></span> Registrar-se
                     </a>

@@ -7,7 +7,10 @@ $page_title = "Registro";
  
 // include login checker
 include_once "login_checker.php";
- 
+
+// include page header HTML
+include_once "layout_header.php";
+
 // if form was posted
 if ($_POST) {
 	// include classes
@@ -47,7 +50,7 @@ if ($_POST) {
 		if ($usuario->create()) {
 		 
 		    echo "<div class='alert alert-info'>";
-		        echo "Registro realizado com sucesso. Entre em contato com o administrador do sistema para ter seu acesso liberado.";
+		        echo "Registro realizado com sucesso. Aguarde a liberação do seu acesso.";
 		    echo "</div>";
 		 
 		    // empty posted values
@@ -58,9 +61,6 @@ if ($_POST) {
 		}
     }
 }
-
-// include page header HTML
-include_once "layout_header.php";
  
 echo "<div class='col-md-12'>";
 ?>

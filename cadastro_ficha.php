@@ -50,7 +50,7 @@ if ($_POST) {
     <table class='table table-hover table-responsive table-bordered'>
  
         <tr>
-            <td>Nome</td>
+            <td>Nome completo</td>
             <td><input type='text' name='nome' class='form-control' focus='true' required /></td>
         </tr>
  

@@ -10,6 +10,7 @@ $require_login=false;
 include_once "login_checker.php";
  
 // default to false
+$invalid_login=false;
 $access_denied=false;
  
 // if the login form was submitted
@@ -32,29 +33,37 @@ if ($_POST) {
 	$email_exists = $usuario->emailExists();
 	 
 	// validate login
-	if ($email_exists && password_verify($_POST['senha'], $usuario->senha) && $usuario->status==1) {
-	 
-	    // if it is, set the session value to true
-	    $_SESSION['logged_in'] = true;
-	    $_SESSION['usuario_id'] = $usuario->id;
-	    $_SESSION['access_level'] = $usuario->access_level;
-	    $_SESSION['nome'] = htmlspecialchars($usuario->nome, ENT_QUOTES, 'UTF-8') ;
-	    $_SESSION['sobrenome'] = $usuario->sobrenome;
-	 
-	    // if access level is 'Admin', redirect to admin section
-	    if ($usuario->access_level=='Admin') {
-	        header("Location: {$home_url}admin/index.php?action=login_success");
-	    }
-	 
-	    // else, redirect only to 'Customer' section
-	    else {
-	        header("Location: {$home_url}");
-	    }
+	if ($email_exists && password_verify($_POST['senha'], $usuario->senha)) {
+		// if account is confirmed
+		if ($usuario->status==1) {
+			// if it is, set the session value to true
+		    $_SESSION['logged_in'] = true;
+		    $_SESSION['usuario_id'] = $usuario->id;
+		    $_SESSION['access_level'] = $usuario->access_level;
+		    $_SESSION['nome'] = htmlspecialchars($usuario->nome, ENT_QUOTES, 'UTF-8') ;
+		    $_SESSION['sobrenome'] = $usuario->sobrenome;
+		 
+		    // if access level is 'Admin', redirect to admin section
+		    if ($usuario->access_level=='Admin') {
+		        header("Location: {$home_url}admin/index.php?action=login_success");
+		    }
+		 
+		    // else, redirect only to 'Customer' section
+		    else {
+		        header("Location: {$home_url}");
+		    }
+		} 
+
+		// if account is not confirmed
+		else {
+			$access_denied=true;
+		}
+		    
 	}
 	 
 	// if username does not exist or password is wrong
 	else {
-	    $access_denied=true;
+	    $invalid_login=true;
 	}
 }
  
@@ -81,9 +90,15 @@ echo "<div class='col-sm-6 col-md-4 col-md-offset-4'>";
 	// tell the user if access denied
 	if ($access_denied) {
 	    echo "<div class='alert alert-danger margin-top-40' role='alert'>
-	        Acesso não permitido.<br /><br />
-	        Seu email e senha podem estar incorretos.
+	        Acesso não permitido.<br/>
+	        Aguarde a liberação do mesmo.
 	    </div>";
+	}
+
+	if ($invalid_login) {
+		echo "<div class='alert alert-danger margin-top-40' role='alert'>
+	        Seu email e senha podem estar incorretos.
+	    </div>";	
 	}
  
     // actual HTML login form

@@ -8,8 +8,40 @@ class Ficha {
     // object properties
     public $id;
     public $nome;
+    public $comunidade;
     public $data_nascimento;
-    // completar campos
+    public $naturalidade;
+    public $endereco;
+    public $bairro;
+    public $cep;
+    public $telefone;
+    public $email;
+    public $estudante;
+    public $colegio;
+    public $batismo;
+    public $eucaristia;
+    public $data_batismo;
+    public $paroquia_batismo;
+    public $nome_pai;
+    public $nome_mae;
+    public $telefone_celular_pai;
+    public $telefone_celular_mae;
+    public $telefone_residencial;
+    public $pais_casados_igreja;
+    public $igreja_casamento;
+    public $pais_vivem_juntos;
+    public $frequentam_comunidade;
+    public $ativos_paroquia;
+    public $tipo_participacao;
+    public $outra_paroquia;
+    public $turma_atual;
+    public $turno;
+    public $ano_inicio_turma;
+    public $catequista_1;
+    public $catequista_2;
+    public $catequista_3;
+    public $catequizando_frequente;
+    public $preenchimento_ficha;
  
     public function __construct($db) {
         $this->conn = $db;
@@ -22,7 +54,7 @@ class Ficha {
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    nome=:nome, data_nascimento=:data_nascimento";
+                    nome=:nome, comunidade=:comunidade, data_nascimento=:data_nascimento, ";
  
         $stmt = $this->conn->prepare($query);
  
@@ -31,8 +63,42 @@ class Ficha {
         $this->data_nascimento=htmlspecialchars(strip_tags($this->data_nascimento)); 
         // bind values 
         $stmt->bindParam(":nome", $this->nome);
+        $stmt->bindParam(":comunidade", $this->comunidade);
         $stmt->bindParam(":data_nascimento", $this->data_nascimento);
- 
+        $stmt->bindParam(":naturalidade", $this->naturalidade);
+        $stmt->bindParam(":endereco", $this->endereco);
+        $stmt->bindParam(":bairro", $this->bairro);
+        $stmt->bindParam(":cep", $this->cep);
+        $stmt->bindParam(":telefone", $this->telefone);
+        $stmt->bindParam(":email", $this->email);
+        $stmt->bindParam(":estudante", $this->estudante);
+        $stmt->bindParam(":colegio", $this->colegio);
+        $stmt->bindParam(":batismo", $this->batismo);
+        $stmt->bindParam(":eucaristia", $this->eucaristia);
+        $stmt->bindParam(":data_batismo", $this->data_batismo);
+        $stmt->bindParam(":paroquia_batismo", $this->paroquia_batismo);
+        $stmt->bindParam(":nome_pai", $this->nome_pai);
+        $stmt->bindParam(":nome_mae", $this->nome_mae);
+        $stmt->bindParam(":telefone_celular_pai", $this->telefone_celular_pai);
+        $stmt->bindParam(":telefone_celular_mae", $this->telefone_celular_mae);
+        $stmt->bindParam(":telefone_residencial", $this->telefone_residencial);
+        $stmt->bindParam(":pais_casados_igreja", $this->pais_casados_igreja);
+        $stmt->bindParam(":igreja_casamento", $this->igreja_casamento);
+        $stmt->bindParam(":pais_vivem_juntos", $this->pais_vivem_juntos);
+        $stmt->bindParam(":frequentam_comunidade", $this->frequentam_comunidade);
+        $stmt->bindParam(":ativos_paroquia", $this->ativos_paroquia);
+        $stmt->bindParam(":tipo_participacao", $this->tipo_participacao);
+        $stmt->bindParam(":outra_paroquia", $this->outra_paroquia);
+        $stmt->bindParam(":turma_atual", $this->turma_atual);
+        $stmt->bindParam(":turno", $this->turno);
+        $stmt->bindParam(":ano_inicio_turma", $this->ano_inicio_turma);
+        $stmt->bindParam(":catequista_1", $this->catequista_1);
+        $stmt->bindParam(":catequista_2", $this->catequista_2);
+        $stmt->bindParam(":catequista_3", $this->catequista_3);
+        $stmt->bindParam(":catequizando_frequente", $this->catequizando_frequente);
+        $stmt->bindParam(":preenchimento_ficha", $this->preenchimento_ficha);
+        $stmt->bindParam(":catequizando_frequente", $this->catequizando_frequente);        
+
         if($stmt->execute()){
             return true;
         }else{

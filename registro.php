@@ -69,7 +69,7 @@ echo "<div class='col-md-12'>";
 	 
 	        <tr>
 	            <td class='width-30-percent'>Nome</td>
-	            <td><input type='text' name='nome' class='form-control' required value="<?php echo isset($_POST['nome']) ? htmlspecialchars($_POST['nome'], ENT_QUOTES) : "";  ?>" /></td>
+	            <td><input type='text' name='nome' class='form-control' autofocus required value="<?php echo isset($_POST['nome']) ? htmlspecialchars($_POST['nome'], ENT_QUOTES) : "";  ?>" /></td>
 	        </tr>
 	 
 	        <tr>
@@ -101,7 +101,7 @@ echo "<div class='col-md-12'>";
 	            <td></td>
 	            <td>
 	                <button type="submit" class="btn btn-success">
-	                    <span class="fas fa-plus"></span> Registrar-se
+	                    <span class="fas fa-user-plus"></span> Registrar-se
 	                </button>
 	            </td>
 	        </tr>

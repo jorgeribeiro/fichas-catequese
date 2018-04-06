@@ -16,7 +16,7 @@ if ($_POST) {
     // get database connection
     $database = new Database();
     $db = $database->getConnection();
- 
+
     // prepare product object
     $ficha = new Ficha($db);
      

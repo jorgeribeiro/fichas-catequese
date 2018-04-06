@@ -18,15 +18,15 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <!-- link to the "Cart" page, highlight if current page is cart.php -->
-                <li <?php echo $page_title=="Index" ? "class='active'" : ""; ?>>
+                <li <?php echo $page_title=="Visualizar fichas" ? "class='active'" : ""; ?>>
                     <a href="<?php echo $home_url; ?>">Home</a>
                 </li>
             </ul>
  
             <?php
             // check if users / customer was logged in
-            // if user was logged in, show "Edit Profile", "Orders" and "Logout" options
-            if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true && $_SESSION['access_level']=='Usuario') {
+            // if user is logged in, show "Edit Profile", "Orders" and "Logout" options
+            if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true) {
             ?>
             <ul class="nav navbar-nav navbar-right">
                 <li <?php echo $page_title=="Edit Profile" ? "class='active'" : ""; ?>>
@@ -43,7 +43,7 @@
             <?php
             }
              
-            // if user was not logged in, show the "login" and "register" options
+            // if user is not logged in, show the "login" and "register" options
             else {
             ?>
             <ul class="nav navbar-nav navbar-right">

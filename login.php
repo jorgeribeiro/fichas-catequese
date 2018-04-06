@@ -39,19 +39,10 @@ if ($_POST) {
 			// if it is, set the session value to true
 		    $_SESSION['logged_in'] = true;
 		    $_SESSION['usuario_id'] = $usuario->id;
-		    $_SESSION['access_level'] = $usuario->access_level;
 		    $_SESSION['nome'] = htmlspecialchars($usuario->nome, ENT_QUOTES, 'UTF-8') ;
 		    $_SESSION['sobrenome'] = $usuario->sobrenome;
-		 
-		    // if access level is 'Admin', redirect to admin section
-		    if ($usuario->access_level=='Admin') {
-		        header("Location: {$home_url}admin/index.php?action=login_success");
-		    }
-		 
-		    // else, redirect only to 'Customer' section
-		    else {
-		        header("Location: {$home_url}");
-		    }
+
+		    header("Location: {$home_url}");
 		} 
 
 		// if account is not confirmed
@@ -81,7 +72,7 @@ echo "<div class='col-sm-6 col-md-4 col-md-offset-4'>";
 	}
 	 
 	// tell the user to login
-	else if ($action=='please_login') {
+	else if ($action=='please_login') {		
 	    echo "<div class='alert alert-info'>
 	        <strong>Por favor, entre no sistema.</strong>
 	    </div>";

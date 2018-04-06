@@ -13,11 +13,8 @@ class Usuario {
     public $telefone;
     public $endereco;
     public $senha;
-    public $access_level;
-    public $access_code;
     public $status;
     public $criado;
-    public $modificado;
  
     // constructor
     public function __construct($db){
@@ -28,7 +25,7 @@ class Usuario {
     function emailExists() {
      
         // query to check if email exists
-        $query = "SELECT id, nome, sobrenome, access_level, senha, status
+        $query = "SELECT id, nome, sobrenome, senha, status
                 FROM " . $this->table_name . "
                 WHERE email = ?
                 LIMIT 0,1";
@@ -58,7 +55,6 @@ class Usuario {
             $this->id = $row['id'];
             $this->nome = $row['nome'];
             $this->sobrenome = $row['sobrenome'];
-            $this->access_level = $row['access_level'];
             $this->senha = $row['senha'];
             $this->status = $row['status'];
      
@@ -86,7 +82,6 @@ class Usuario {
                     telefone = :telefone,
                     endereco = :endereco,
                     senha = :senha,
-                    access_level = :access_level,
                     status = :status,
                     criado = :criado";
      
@@ -100,7 +95,6 @@ class Usuario {
         $this->telefone=htmlspecialchars(strip_tags($this->telefone));
         $this->endereco=htmlspecialchars(strip_tags($this->endereco));
         $this->senha=htmlspecialchars(strip_tags($this->senha));
-        $this->access_level=htmlspecialchars(strip_tags($this->access_level));
         $this->status=htmlspecialchars(strip_tags($this->status));
      
         // bind the values
@@ -114,7 +108,6 @@ class Usuario {
         $password_hash = password_hash($this->senha, PASSWORD_BCRYPT);
         $stmt->bindParam(':senha', $password_hash);
      
-        $stmt->bindParam(':access_level', $this->access_level);
         $stmt->bindParam(':status', $this->status);
         $stmt->bindParam(':criado', $this->criado);
      

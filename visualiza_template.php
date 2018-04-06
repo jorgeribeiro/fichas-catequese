@@ -43,23 +43,17 @@ if ($total_rows>0) {
                 echo "<td>-</td>";
                 echo "<td>-</td>";
                 echo "<td>";
-                    // read one, edit and delete button will be here
-                // read product button
-                echo "<a href='visualiza_ficha.php?id={$id}' class='btn btn-primary left-margin'>";
-                    echo "<span class='fas fa-list-ul'></span> Visualizar";
-                echo "</a>";
-                 
-                // edit product button
-                echo "<a href='atualiza_ficha.php?id={$id}' class='btn btn-info left-margin'>";
-                    echo "<span class='fas fa-edit'></span> Editar";
-                echo "</a>";
-                 
-                // delete product button
-                echo "<a delete-id='{$id}' class='btn btn-danger delete-object'>";
-                    echo "<span class='fas fa-times'></span> Apagar";
-                echo "</a>";
+                    // read one and edit button will be here
+                    // read button
+                    echo "<a href='visualiza_ficha.php?id={$id}' class='btn btn-primary left-margin'>";
+                        echo "<span class='fas fa-list-ul'></span> Visualizar";
+                    echo "</a>";
+                     
+                    // edit button
+                    echo "<a href='atualiza_ficha.php?id={$id}' class='btn btn-info left-margin'>";
+                        echo "<span class='fas fa-edit'></span> Editar";
+                    echo "</a>";                
                 echo "</td>";
- 
             echo "</tr>";
  
         }

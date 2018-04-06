@@ -43,7 +43,6 @@ if ($_POST) {
 		$usuario->telefone=$_POST['telefone'];
 		$usuario->endereco=$_POST['endereco'];
 		$usuario->senha=$_POST['senha'];
-		$usuario->access_level='Usuario';
 		$usuario->status=0;
 		 
 		// create the user

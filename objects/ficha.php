@@ -42,6 +42,7 @@ class Ficha {
     public $catequista_3;
     public $catequizando_frequente;
     public $preenchimento_ficha;
+    public $modificacao_ficha;
  
     public function __construct($db) {
         $this->conn = $db;
@@ -54,13 +55,51 @@ class Ficha {
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    nome=:nome, comunidade=:comunidade, data_nascimento=:data_nascimento, ";
+                    nome=:nome, 
+                    comunidade=:comunidade,
+                    data_nascimento=:data_nascimento,
+                    naturalidade=:naturalidade,
+                    endereco=:endereco,
+                    bairro=:bairro,
+                    cep=:cep,
+                    telefone=:telefone,
+                    email=:email,
+                    estudante=:estudante,
+                    colegio=:colegio,
+                    batismo=:batismo,
+                    eucaristia=:eucaristia,
+                    data_batismo=:data_batismo,
+                    paroquia_batismo=:paroquia_batismo,
+                    nome_pai=:nome_pai,
+                    nome_mae=:nome_mae,
+                    telefone_celular_pai=:telefone_celular_pai,
+                    telefone_celular_mae=:telefone_celular_mae,
+                    telefone_residencial=:telefone_residencial,
+                    pais_casados_igreja=:pais_casados_igreja,
+                    igreja_casamento=:igreja_casamento,
+                    pais_vivem_juntos=:pais_vivem_juntos,
+                    frequentam_comunidade=:frequentam_comunidade,
+                    ativos_paroquia=:ativos_paroquia,
+                    tipo_participacao=:tipo_participacao,
+                    outra_paroquia=:outra_paroquia,
+                    turma_atual=:turma_atual,
+                    turno=:turno,
+                    ano_inicio_turma=:ano_inicio_turma,
+                    catequista_1=:catequista_1,
+                    catequista_2=:catequista_2,
+                    catequista_3=:catequista_3,
+                    catequizando_frequente=:catequizando_frequente,
+                    preenchimento_ficha=:preenchimento_ficha";
  
         $stmt = $this->conn->prepare($query);
  
         // posted values
         $this->nome=htmlspecialchars(strip_tags($this->nome));
-        $this->data_nascimento=htmlspecialchars(strip_tags($this->data_nascimento)); 
+        $this->data_nascimento = date_format($this->data_nascimento, 'Y/m/d');
+        $this->data_batismo = date_format($this->data_batismo, 'Y/m/d');
+        
+
+
         // bind values 
         $stmt->bindParam(":nome", $this->nome);
         $stmt->bindParam(":comunidade", $this->comunidade);
@@ -96,8 +135,7 @@ class Ficha {
         $stmt->bindParam(":catequista_2", $this->catequista_2);
         $stmt->bindParam(":catequista_3", $this->catequista_3);
         $stmt->bindParam(":catequizando_frequente", $this->catequizando_frequente);
-        $stmt->bindParam(":preenchimento_ficha", $this->preenchimento_ficha);
-        $stmt->bindParam(":catequizando_frequente", $this->catequizando_frequente);        
+        $stmt->bindParam(":preenchimento_ficha", $this->preenchimento_ficha);     
 
         if($stmt->execute()){
             return true;

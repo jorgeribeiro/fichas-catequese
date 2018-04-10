@@ -13,6 +13,7 @@
 <!-- font awesome icons -->
 <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 
+<!-- mask library -->
 <script src="libs/js/jquery.mask.min.js"></script>
 
 <script>
@@ -23,6 +24,12 @@
         $('.telefone_com_ddd').mask('(00) 0000-0000');
         $('.celular_com_ddd').mask('(00) 00000-0000');
     });
+</script>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 </script>
 
 <script>

@@ -27,7 +27,7 @@ if ($_POST) {
     $utils = new Utils();
  
     // set user email to detect if it already exists
-    $usuario->email=$_POST['email'];
+    $usuario->email = $_POST['email'];
  
     // check if email already exists
     if ($usuario->emailExists()) {
@@ -38,12 +38,12 @@ if ($_POST) {
  
     else {
         // set values to object properties
-		$usuario->nome=$_POST['nome'];
-		$usuario->sobrenome=$_POST['sobrenome'];
-		$usuario->telefone=$_POST['telefone'];
-		$usuario->endereco=$_POST['endereco'];
-		$usuario->senha=$_POST['senha'];
-		$usuario->status=0;
+		$usuario->nome = $_POST['nome'];
+		$usuario->sobrenome = $_POST['sobrenome'];
+		$usuario->telefone = $_POST['telefone'];
+		$usuario->endereco = $_POST['endereco'];
+		$usuario->senha = $_POST['senha'];
+		$usuario->status = 0;
 		 
 		// create the user
 		if ($usuario->create()) {
@@ -53,7 +53,7 @@ if ($_POST) {
 		    echo "</div>";
 		 
 		    // empty posted values
-		    $_POST=array();
+		    $_POST = array();
 		 
 		} else {
 		    echo "<div class='alert alert-danger' role='alert'>Erro ao registrar. Tente novamente.</div>";

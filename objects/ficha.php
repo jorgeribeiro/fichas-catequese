@@ -95,10 +95,8 @@ class Ficha {
  
         // posted values
         $this->nome=htmlspecialchars(strip_tags($this->nome));
-        $this->data_nascimento = date_format($this->data_nascimento, 'Y/m/d');
-        $this->data_batismo = date_format($this->data_batismo, 'Y/m/d');
-        
-
+        $this->data_nascimento = date('Y/m/d', strtotime($this->data_nascimento));
+        $this->data_batismo = date('Y/m/d', strtotime($this->data_batismo));
 
         // bind values 
         $stmt->bindParam(":nome", $this->nome);
@@ -139,7 +137,7 @@ class Ficha {
 
         if($stmt->execute()){
             return true;
-        }else{
+        } else {
             return false;
         }
  

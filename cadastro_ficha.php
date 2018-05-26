@@ -33,7 +33,6 @@ echo "</div>";
 <?php
 // if the form was submitted
 if ($_POST) {
- 
     // set product property values
     $ficha->nome = $_POST['nome'];
     $ficha->comunidade = $_POST['comunidade'];
@@ -44,10 +43,20 @@ if ($_POST) {
     $ficha->cep = $_POST['cep'];
     $ficha->telefone = $_POST['telefone'];
     $ficha->email = $_POST['email'];
-    $ficha->estudante = $_POST['estudante'];
+    if (isset($_POST['estudante'])) {
+        $ficha->estudante = $_POST['estudante'];
+    }
     $ficha->colegio = $_POST['colegio'];
-    $ficha->batismo = $_POST['batismo'];
-    $ficha->eucaristia = $_POST['eucaristia'];
+    if (isset($_POST['batismo'])) {
+        $ficha->batismo = $_POST['batismo'];
+    } else {
+        $ficha->batismo = false;
+    }
+    if (isset($_POST['eucaristia'])) {
+        $ficha->eucaristia = $_POST['eucaristia'];
+    } else {
+        $ficha->eucaristia = false;
+    }
     $ficha->data_batismo = $_POST['data_batismo'];
     $ficha->paroquia_batismo = $_POST['paroquia_batismo'];
     $ficha->nome_pai = $_POST['nome_pai'];
@@ -70,7 +79,6 @@ if ($_POST) {
     $ficha->catequista_3 = $_POST['catequista_3'];
     $ficha->catequizando_frequente = $_POST['catequizando_frequente'];
     $ficha->preenchimento_ficha = $_SESSION['usuario_id'];
-
  
     // create the product
     if ($ficha->create()) {
@@ -130,8 +138,8 @@ if ($_POST) {
         <tr>
             <td>Estudante</td>
             <td>
-                <label class='radio-inline'><input type='radio' value='1' name='estudante'>Sim</label>
-                <label class='radio-inline'><input type='radio' value='0' name='estudante'>Não</label>
+                <label class='radio-inline'><input type='radio' value='Sim' name='estudante'>Sim</label>
+                <label class='radio-inline'><input type='radio' value='Não' name='estudante'>Não</label>
             </td>
         </tr>
         <tr>
@@ -141,8 +149,8 @@ if ($_POST) {
         <tr style='height: 51px'>
             <td>Sacramentos</td>
             <td>
-                <label class='checkbox-inline'><input type='checkbox' name='batismo'>Batismo</label>
-                <label class='checkbox-inline'><input type='checkbox' name='eucaristia'>Primeira eucaristia</label>
+                <label class='checkbox-inline'><input type='checkbox' name='batismo' value='1'>Batismo</label>
+                <label class='checkbox-inline'><input type='checkbox' name='eucaristia' value='1'>Primeira eucaristia</label>
             </td>
         </tr>    
         <tr>
@@ -213,30 +221,25 @@ if ($_POST) {
             <td>Se frequentam outra paróquia, qual?</td>
             <td><input type='text' name='outra_paroquia' class='form-control' /></td>
         </tr>
-        <tr>
+        <tr style='height: 51px'>
             <td>Turma atual *</td>
             <td>
-                <div class='dropdown'>
-                    <input type='hidden' id='turma_dropdown' name='turma_atual' class='form-control' />
-                    <button class='btn btn-default dropdown-toggle' type='button' id='dropdownMenu1' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true'>
-                        Selecione a turma 
-                        <span class='caret'></span>
-                    </button>
-                    <ul id='lista_turmas' class='dropdown-menu' aria-labelledby='dropdownMenu1'>
-                        <li><a href="#">Pré-iniciação</a></li>
-                        <li><a href="#">Iniciação</a></li>
-                        <li><a href="#">Eucaristia</a></li>
-                        <li><a href="#">Perseverança</a></li>
-                        <li><a href="#">Crisma</a></li>
-                        <li><a href="#">Adultos</a></li>
-                    </ul>
-                </div>                
+                <label class='radio-inline'><input type='radio' value='Pré-iniciação' name='turma_atual' required>Pré-iniciação</label>
+                <label class='radio-inline'><input type='radio' value='Iniciação' name='turma_atual'>Iniciação</label>
+                <label class='radio-inline'><input type='radio' value='Eucaristia' name='turma_atual'>Eucaristia</label>
+                <label class='radio-inline'><input type='radio' value='Perseverança' name='turma_atual'>Perseverança</label>
+                <label class='radio-inline'><input type='radio' value='Crisma' name='turma_atual'>Crisma</label>
+                <label class='radio-inline'><input type='radio' value='Adultos' name='turma_atual'>Adultos</label>
             </td>
         </tr>
-        <tr>
+        <tr style='height: 51px'>
             <td>Turno *</td>
-            <td><input type='text' name='turno' class='form-control' required /></td>
-        </tr>
+            <td>
+                <label class='radio-inline'><input type='radio' value='Manhã' name='turno' required>Manhã</label>
+                <label class='radio-inline'><input type='radio' value='Tarde' name='turno'>Tarde</label>
+                <label class='radio-inline'><input type='radio' value='Noite' name='turno'>Noite</label>
+            </td>
+        </tr>    
         <tr>
             <td>Ano de início da turma *</td>
             <td><input type='text' name='ano_inicio_turma' class='ano form-control' required /></td>
@@ -277,10 +280,3 @@ if ($_POST) {
 // footer
 include_once 'layout_footer.php';
 ?>
-
-<script>
-$('#lista_turmas li a').on('click', function() {
-    $('#turma_dropdown').val($(this).html());
-
-});
-</script>

@@ -2,6 +2,13 @@
 // core.php holds pagination variables
 include_once 'config/core.php';
 
+// set page title
+$require_login=true;
+$page_title = 'Cadastrar ficha';
+
+// include login checker
+include_once 'login_checker.php';
+
 // include database and object files
 include_once 'config/database.php';
 include_once 'objects/ficha.php';
@@ -13,9 +20,8 @@ $db = $database->getConnection();
 // pass connection to objects
 $ficha = new Ficha($db);
 
-// set page headers
-$page_title = "Cadastrar ficha";
-include_once "layout_header.php";
+// include page header HTML
+include_once 'layout_header.php';
  
 echo "<div class='right-button-margin'>";
     echo "<a href='index.php' class='btn btn-primary pull-right'>";
@@ -63,7 +69,7 @@ if ($_POST) {
     $ficha->catequista_2 = $_POST['catequista_2'];
     $ficha->catequista_3 = $_POST['catequista_3'];
     $ficha->catequizando_frequente = $_POST['catequizando_frequente'];
-    $ficha->preenchimento_ficha =  $_SESSION['usuario_id'];
+    $ficha->preenchimento_ficha = $_SESSION['usuario_id'];
 
  
     // create the product
@@ -79,12 +85,11 @@ if ($_POST) {
 ?>
  
 <!-- HTML form for creating a product -->
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
- 
+<form action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>' method='post'>
     <div style='padding-bottom: 5px'>
-        <span class='label label-warning'>Campos marcados com * são obrigatórios.</span>
+        <span class='label label-warning'>Campos marcados com * são obrigatórios</span>
     </div>
-    
+
     <table class='table table-hover table-responsive table-bordered'>
         <tr>
             <td>Nome completo *</td>
@@ -123,15 +128,18 @@ if ($_POST) {
             <td><input type='email' name='email' class='form-control' /></td>
         </tr>
         <tr>
-            <td>Estudante *</td>
-            <td><input type='text' name='estudante' class='form-control' required /></td>
+            <td>Estudante</td>
+            <td>
+                <label class='radio-inline'><input type='radio' value='1' name='estudante'>Sim</label>
+                <label class='radio-inline'><input type='radio' value='0' name='estudante'>Não</label>
+            </td>
         </tr>
         <tr>
             <td>Nome da escola/faculdade/universidade</td>
             <td><input type='text' name='colegio' class='form-control' /></td>
         </tr>
         <tr style='height: 51px'>
-            <td>Sacramentos *</td>
+            <td>Sacramentos</td>
             <td>
                 <label class='checkbox-inline'><input type='checkbox' name='batismo'>Batismo</label>
                 <label class='checkbox-inline'><input type='checkbox' name='eucaristia'>Primeira eucaristia</label>
@@ -168,8 +176,8 @@ if ($_POST) {
         <tr style='height: 51px'>
             <td>Pais casados na Igreja? *</td>
             <td>
-                <label class="radio-inline"><input type="radio" name="optradio">Sim</label>
-                <label class="radio-inline"><input type="radio" name="optradio">Não</label>
+                <label class='radio-inline'><input type='radio' value='1' name='pais_casados_igreja' required>Sim</label>
+                <label class='radio-inline'><input type='radio' value='0' name='pais_casados_igreja'>Não</label>
             </td>
         </tr>
         <tr>
@@ -179,22 +187,22 @@ if ($_POST) {
         <tr style='height: 51px'>
             <td>Pais vivem juntos? *</td>
             <td>
-                <label class="radio-inline"><input type="radio" name="optradio">Sim</label>
-                <label class="radio-inline"><input type="radio" name="optradio">Não</label>
+                <label class='radio-inline'><input type='radio' value='1' name='pais_vivem_juntos' required>Sim</label>
+                <label class='radio-inline'><input type='radio' value='0' name='pais_vivem_juntos'>Não</label>
             </td>
         </tr>
         <tr style='height: 51px'>
             <td>Frequentam a comunidade? *</td>
-            <<td>
-                <label class="radio-inline"><input type="radio" name="optradio">Sim</label>
-                <label class="radio-inline"><input type="radio" name="optradio">Não</label>
+            <td>
+                <label class='radio-inline'><input type='radio' value='1' name='frequentam_comunidade' required>Sim</label>
+                <label class='radio-inline'><input type='radio' value='0' name='frequentam_comunidade'>Não</label>
             </td>
         </tr>
         <tr style='height: 51px'>
             <td>Ativos na paróquia? *</td>
             <td>
-                <label class="radio-inline"><input type="radio" name="optradio">Sim</label>
-                <label class="radio-inline"><input type="radio" name="optradio">Não</label>
+                <label class='radio-inline'><input type='radio' value='1' name='ativos_paroquia' required>Sim</label>
+                <label class='radio-inline'><input type='radio' value='0' name='ativos_paroquia'>Não</label>
             </td>
         </tr>
         <tr>
@@ -207,7 +215,23 @@ if ($_POST) {
         </tr>
         <tr>
             <td>Turma atual *</td>
-            <td><input type='text' name='turma_atual' class='form-control' required /></td>
+            <td>
+                <div class='dropdown'>
+                    <input type='hidden' id='turma_dropdown' name='turma_atual' class='form-control' />
+                    <button class='btn btn-default dropdown-toggle' type='button' id='dropdownMenu1' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true'>
+                        Selecione a turma 
+                        <span class='caret'></span>
+                    </button>
+                    <ul id='lista_turmas' class='dropdown-menu' aria-labelledby='dropdownMenu1'>
+                        <li><a href="#">Pré-iniciação</a></li>
+                        <li><a href="#">Iniciação</a></li>
+                        <li><a href="#">Eucaristia</a></li>
+                        <li><a href="#">Perseverança</a></li>
+                        <li><a href="#">Crisma</a></li>
+                        <li><a href="#">Adultos</a></li>
+                    </ul>
+                </div>                
+            </td>
         </tr>
         <tr>
             <td>Turno *</td>
@@ -232,24 +256,31 @@ if ($_POST) {
         <tr style='height: 51px'>
             <td>Catequizando frequente *</td>
             <td>
-                <label class="radio-inline"><input type="radio" name="optradio">Sim</label>
-                <label class="radio-inline"><input type="radio" name="optradio">Não</label>
+                <label class='radio-inline'><input type='radio' value='1' name='catequizando_frequente' required>Sim</label>
+                <label class='radio-inline'><input type='radio' value='0' name='catequizando_frequente'>Não</label>
             </td>
         </tr>
  
         <tr>
             <td></td>
             <td>
-                <button type="submit" class="btn btn-success">
-                    <span class="fas fa-save"></span> Cadastrar ficha
+                <button type='submit' class='btn btn-success'>
+                    <span class='fas fa-save'></span> Cadastrar ficha
                 </button>            
             </td>
         </tr>
  
     </table>
 </form>
+
 <?php
- 
 // footer
-include_once "layout_footer.php";
+include_once 'layout_footer.php';
 ?>
+
+<script>
+$('#lista_turmas li a').on('click', function() {
+    $('#turma_dropdown').val($(this).html());
+
+});
+</script>

@@ -29,7 +29,7 @@ if ($_POST) {
     }
      
     // if unable to delete the product
-    else{
+    else {
         echo "Erro ao apagar ficha.";
     }
 }

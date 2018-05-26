@@ -46,12 +46,12 @@ if ($total_rows>0) {
                     // read one and edit button will be here
                     // read button
                     echo "<a href='visualiza_ficha.php?id={$id}' class='btn btn-primary left-margin'>";
-                        echo "<span class='fas fa-list-ul'></span> Visualizar";
+                        echo "<span class='fas fa-list-ul'></span> Visualizar ficha completa";
                     echo "</a>";
                      
                     // edit button
                     echo "<a href='atualiza_ficha.php?id={$id}' class='btn btn-info left-margin'>";
-                        echo "<span class='fas fa-edit'></span> Editar";
+                        echo "<span class='fas fa-edit'></span> Editar ficha";
                     echo "</a>";                
                 echo "</td>";
             echo "</tr>";

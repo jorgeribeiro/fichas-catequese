@@ -10,7 +10,8 @@ class Usuario {
     public $nome;
     public $sobrenome;
     public $email;
-    public $telefone;
+    public $telefone_fixo;
+    public $telefone_celular;
     public $endereco;
     public $senha;
     public $status;
@@ -79,7 +80,8 @@ class Usuario {
                     nome=:nome,
                     sobrenome=:sobrenome,
                     email=:email,
-                    telefone=:telefone,
+                    telefone_fixo=:telefone_fixo,
+                    telefone_celular=:telefone_celular,
                     endereco=:endereco,
                     senha=:senha,
                     status=:status,
@@ -92,7 +94,6 @@ class Usuario {
         $this->nome = htmlspecialchars(strip_tags($this->nome));
         $this->sobrenome = htmlspecialchars(strip_tags($this->sobrenome));
         $this->email = htmlspecialchars(strip_tags($this->email));
-        $this->telefone = htmlspecialchars(strip_tags($this->telefone));
         $this->endereco = htmlspecialchars(strip_tags($this->endereco));
         $this->senha = htmlspecialchars(strip_tags($this->senha));
         $this->status = htmlspecialchars(strip_tags($this->status));
@@ -101,7 +102,8 @@ class Usuario {
         $stmt->bindParam(':nome', $this->nome);
         $stmt->bindParam(':sobrenome', $this->sobrenome);
         $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':telefone', $this->telefone);
+        $stmt->bindParam(':telefone_fixo', $this->telefone_fixo);
+        $stmt->bindParam(':telefone_celular', $this->telefone_celular);
         $stmt->bindParam(':endereco', $this->endereco);
      
         // hash the password before saving to database
@@ -114,8 +116,7 @@ class Usuario {
         // execute the query, also check if query was successful
         if($stmt->execute()) {
             return true;
-        }else{
-            $this->showError($stmt);
+        } else {            
             return false;
         }
      

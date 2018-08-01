@@ -19,7 +19,7 @@
             <ul class="nav navbar-nav">
                 <!-- link to the "Cart" page, highlight if current page is cart.php -->
                 <li <?php echo $page_title=="Visualizar fichas" ? "class='active'" : ""; ?>>
-                    <a href="<?php echo $home_url; ?>">Home</a>
+                    <a href="<?php echo $home_url; ?>">Início</a>
                 </li>
             </ul>
  

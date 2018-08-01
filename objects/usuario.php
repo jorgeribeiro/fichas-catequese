@@ -34,7 +34,7 @@ class Usuario {
         $stmt = $this->conn->prepare( $query );
      
         // sanitize
-        $this->email=htmlspecialchars(strip_tags($this->email));
+        $this->email = htmlspecialchars(strip_tags($this->email));
      
         // bind given email value
         $stmt->bindParam(1, $this->email);
@@ -70,32 +70,32 @@ class Usuario {
     function create() {
      
         // to get time stamp for 'created' field
-        $this->criado=date('Y-m-d H:i:s');
+        $this->criado = date('Y-m-d H:i:s');
      
         // insert query
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    nome = :nome,
-                    sobrenome = :sobrenome,
-                    email = :email,
-                    telefone = :telefone,
-                    endereco = :endereco,
-                    senha = :senha,
-                    status = :status,
-                    criado = :criado";
+                    nome=:nome,
+                    sobrenome=:sobrenome,
+                    email=:email,
+                    telefone=:telefone,
+                    endereco=:endereco,
+                    senha=:senha,
+                    status=:status,
+                    criado=:criado";
      
         // prepare the query
         $stmt = $this->conn->prepare($query);
      
         // sanitize
-        $this->nome=htmlspecialchars(strip_tags($this->nome));
-        $this->sobrenome=htmlspecialchars(strip_tags($this->sobrenome));
-        $this->email=htmlspecialchars(strip_tags($this->email));
-        $this->telefone=htmlspecialchars(strip_tags($this->telefone));
-        $this->endereco=htmlspecialchars(strip_tags($this->endereco));
-        $this->senha=htmlspecialchars(strip_tags($this->senha));
-        $this->status=htmlspecialchars(strip_tags($this->status));
+        $this->nome = htmlspecialchars(strip_tags($this->nome));
+        $this->sobrenome = htmlspecialchars(strip_tags($this->sobrenome));
+        $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->telefone = htmlspecialchars(strip_tags($this->telefone));
+        $this->endereco = htmlspecialchars(strip_tags($this->endereco));
+        $this->senha = htmlspecialchars(strip_tags($this->senha));
+        $this->status = htmlspecialchars(strip_tags($this->status));
      
         // bind the values
         $stmt->bindParam(':nome', $this->nome);
@@ -112,7 +112,7 @@ class Usuario {
         $stmt->bindParam(':criado', $this->criado);
      
         // execute the query, also check if query was successful
-        if($stmt->execute()){
+        if($stmt->execute()) {
             return true;
         }else{
             $this->showError($stmt);

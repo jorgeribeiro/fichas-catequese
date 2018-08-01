@@ -28,8 +28,8 @@ if ($total_rows>0) {
         echo "<tr>";
             echo "<th>Nome</th>";
             echo "<th>Data de nascimento</th>";
-            echo "<th>Naturalidade</th>";
-            echo "<th>Bairro</th>";
+            echo "<th>Comunidade</th>";
+            echo "<th>Turma - Turno (Dia) - Ano início</th>";
             echo "<th>Ações</th>";
         echo "</tr>";
  
@@ -38,10 +38,10 @@ if ($total_rows>0) {
             extract($row);
  
             echo "<tr>";
-                echo "<td>{$nome}</td>";
-                echo "<td>{$data_nascimento}</td>";
-                echo "<td>-</td>";
-                echo "<td>-</td>";
+                echo "<td>{$nome}</td>";                
+                echo "<td>" . date('d/m/Y', strtotime($data_nascimento)) . "</td>";
+                echo "<td>{$comunidade}</td>";
+                echo "<td>{$turma_atual} - {$turno} ($dia_da_semana) - {$ano_inicio_turma}</td>";
                 echo "<td>";
                     // read one and edit button will be here
                     // read button
@@ -51,7 +51,7 @@ if ($total_rows>0) {
                      
                     // edit button
                     echo "<a href='atualiza_ficha.php?id={$id}' class='btn btn-info left-margin'>";
-                        echo "<span class='fas fa-edit'></span> Editar ficha";
+                        echo "<span class='fas fa-edit'></span> Atualizar ficha";
                     echo "</a>";                
                 echo "</td>";
             echo "</tr>";

@@ -33,7 +33,6 @@ echo "</div>";
 <?php
 // if the form was submitted
 if ($_POST) {
-    // set product property values
     $ficha->nome = $_POST['nome'];
     $ficha->comunidade = $_POST['comunidade'];
     $ficha->data_nascimento = $_POST['data_nascimento'];
@@ -72,6 +71,7 @@ if ($_POST) {
     $ficha->tipo_participacao = $_POST['tipo_participacao'];
     $ficha->outra_paroquia = $_POST['outra_paroquia'];
     $ficha->turma_atual = $_POST['turma_atual'];
+    $ficha->dia_da_semana = $_POST['dia_da_semana']; 
     $ficha->turno = $_POST['turno'];
     $ficha->ano_inicio_turma = $_POST['ano_inicio_turma'];
     $ficha->catequista_1 = $_POST['catequista_1'];
@@ -82,7 +82,7 @@ if ($_POST) {
  
     // create the product
     if ($ficha->create()) {
-        echo "<div class='alert alert-success'>Ficha cadastrada.</div>";
+        echo "<div class='alert alert-success'>Ficha cadastrada com sucesso.</div>";
     }
  
     // if unable to create the product, tell the user
@@ -101,11 +101,11 @@ if ($_POST) {
     <table class='table table-hover table-responsive table-bordered'>
         <tr>
             <td>Nome completo *</td>
-            <td><input type='text' name='nome' id='nome' class='form-control' autofocus required /></td>
+            <td><input type='text' name='nome' class='form-control' autofocus required /></td>
         </tr>
         <tr>
             <td>Comunidade</td>
-            <td><input type='text' name='comunidade' class='form-control' /></td>
+            <td><input type='text' name='comunidade' class='form-control' data-toggle='tooltip' data-placement='right' title='Nome do bairro em que está situada a Paróquia' /></td>
         </tr>
         <tr>
             <td>Data de nascimento *</td>
@@ -138,8 +138,8 @@ if ($_POST) {
         <tr>
             <td>Estudante</td>
             <td>
-                <label class='radio-inline'><input type='radio' value='Sim' name='estudante'>Sim</label>
-                <label class='radio-inline'><input type='radio' value='Não' name='estudante'>Não</label>
+                <label class='radio-inline'><input type='radio' value='1' name='estudante'>Sim</label>
+                <label class='radio-inline'><input type='radio' value='0' name='estudante'>Não</label>
             </td>
         </tr>
         <tr>
@@ -233,6 +233,13 @@ if ($_POST) {
             </td>
         </tr>
         <tr style='height: 51px'>
+            <td>Dia dos encontros *</td>
+            <td>
+                <label class='radio-inline'><input type='radio' value='Sábado' name='dia_da_semana' required>Sábado</label>
+                <label class='radio-inline'><input type='radio' value='Domingo' name='dia_da_semana'>Domingo</label>               
+            </td>
+        </tr>
+        <tr style='height: 51px'>
             <td>Turno *</td>
             <td>
                 <label class='radio-inline'><input type='radio' value='Manhã' name='turno' required>Manhã</label>
@@ -246,15 +253,15 @@ if ($_POST) {
         </tr>
         <tr>
             <td>Catequista I *</td>
-            <td><input type='text' name='catequista_1' class='form-control' required /></td>
+            <td><input type='text' name='catequista_1' class='form-control' data-toggle='tooltip' data-placement='right' title='Insira apenas nome e sobrenome do(a) catequista' required /></td>
         </tr>
         <tr>
             <td>Catequista II</td>
-            <td><input type='text' name='catequista_2' class='form-control' /></td>
+            <td><input type='text' name='catequista_2' class='form-control' data-toggle='tooltip' data-placement='right' title='Preencha apenas nome e sobrenome do(a) catequista' /></td>
         </tr>
         <tr>
             <td>Catequista III</td>
-            <td><input type='text' name='catequista_3' class='form-control' /></td>
+            <td><input type='text' name='catequista_3' class='form-control' data-toggle='tooltip' data-placement='right' title='Preencha apenas nome e sobrenome do(a) catequista' /></td>
         </tr>
         <tr style='height: 51px'>
             <td>Catequizando frequente *</td>

@@ -16,7 +16,6 @@ if ($_POST) {
 	// include classes
 	include_once 'config/database.php';
 	include_once 'objects/usuario.php';
-	include_once "libs/php/utils.php";
  
     // get database connection
     $database = new Database();
@@ -24,7 +23,6 @@ if ($_POST) {
  
     // initialize objects
     $usuario = new Usuario($db);
-    $utils = new Utils();
  
     // set user email to detect if it already exists
     $usuario->email = $_POST['email'];
@@ -40,7 +38,8 @@ if ($_POST) {
         // set values to object properties
 		$usuario->nome = $_POST['nome'];
 		$usuario->sobrenome = $_POST['sobrenome'];
-		$usuario->telefone = $_POST['telefone'];
+		$usuario->telefone_fixo = $_POST['telefone_fixo'];
+		$usuario->telefone_celular = $_POST['telefone_celular'];
 		$usuario->endereco = $_POST['endereco'];
 		$usuario->senha = $_POST['senha'];
 		$usuario->status = 0;
@@ -49,7 +48,7 @@ if ($_POST) {
 		if ($usuario->create()) {
 		 
 		    echo "<div class='alert alert-info'>";
-		        echo "Registro realizado com sucesso. Aguarde a liberação do seu acesso.";
+		        echo "Registro realizado com sucesso. Solicite a liberação do seu acesso ao administrador do sistema.";
 		    echo "</div>";
 		 
 		    // empty posted values
@@ -76,10 +75,15 @@ echo "<div class='col-md-12'>";
 	            <td>Sobrenome</td>
 	            <td><input type='text' name='sobrenome' class='form-control' required value="<?php echo isset($_POST['sobrenome']) ? htmlspecialchars($_POST['sobrenome'], ENT_QUOTES) : "";  ?>" /></td>
 	        </tr>
+
+	        <tr>
+	            <td>Telefone fixo</td>
+	            <td><input type='text' name='telefone_fixo' class='telefone_com_ddd form-control' value="<?php echo isset($_POST['telefone_fixo']) ? htmlspecialchars($_POST['telefone_fixo'], ENT_QUOTES) : "";  ?>" /></td>
+	        </tr>
 	 
 	        <tr>
-	            <td>Telefone</td>
-	            <td><input type='text' name='telefone' class='form-control' required value="<?php echo isset($_POST['telefone']) ? htmlspecialchars($_POST['telefone'], ENT_QUOTES) : "";  ?>" /></td>
+	            <td>Telefone celular</td>
+	            <td><input type='text' name='telefone_celular' class='celular_com_ddd form-control' required value="<?php echo isset($_POST['telefone_celular']) ? htmlspecialchars($_POST['telefone_celular'], ENT_QUOTES) : "";  ?>" /></td>
 	        </tr>
 	 
 	        <tr>

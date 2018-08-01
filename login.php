@@ -82,7 +82,7 @@ echo "<div class='col-sm-6 col-md-4 col-md-offset-4'>";
 	if ($access_denied) {
 	    echo "<div class='alert alert-danger margin-top-40' role='alert'>
 	        Acesso não permitido.<br/>
-	        Aguarde a liberação do mesmo.
+	        Solicite a liberação do seu acesso ao administrador do sistema.
 	    </div>";
 	}
 

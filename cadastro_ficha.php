@@ -105,7 +105,13 @@ if ($_POST) {
         </tr>
         <tr>
             <td>Comunidade</td>
-            <td><input type='text' name='comunidade' class='form-control' data-toggle='tooltip' data-placement='right' title='Nome do bairro em que está situada a Paróquia' /></td>
+            <td>
+                <label class='radio-inline'><input type='radio' value='Bequimão' name='comunidade'>Bequimão</label>
+                <label class='radio-inline'><input type='radio' value='Rio Anil' name='comunidade'>Rio Anil</label>
+                <label class='radio-inline'><input type='radio' value='Vila Padre Xavier' name='comunidade'>Vila Padre Xavier</label>
+                <label class='radio-inline'><input type='radio' value='Ipase' name='comunidade'>Ipase</label>
+                <label class='radio-inline'><input type='radio' value='Não informado' name='comunidade'>Não informado</label>                
+            </td>
         </tr>
         <tr>
             <td>Data de nascimento *</td>

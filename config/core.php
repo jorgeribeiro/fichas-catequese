@@ -9,7 +9,7 @@ session_start();
 date_default_timezone_set('America/Fortaleza');
  
 // home page url
-$home_url="http://localhost/fichas-catequese/";
+$home_url="http://catequesepscj.890m.com/";
 
 // page given in URL parameter, default page is one
 $page = isset($_GET['page']) ? $_GET['page'] : 1; 
